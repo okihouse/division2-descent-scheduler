@@ -1,4 +1,4 @@
-import { Col, Row, Typography } from 'antd'
+import { Col, Row, Tooltip, Typography } from 'antd'
 import { FunctionComponent, useEffect, useState } from 'react'
 import { TalentCategory } from '../../type/TalentCategory'
 import { TalentCard } from './TalentCard'
@@ -48,15 +48,22 @@ export const TalentContainerCard: FunctionComponent<IProps> = (props: IProps) =>
             </Col>
             {talents.map((r, idx: number) => {
                 return (
-                    <Col
-                        key={idx}
-                        {...{ xs: 12, lg: 6 }}
+                    <Tooltip
+                        title={r.description}
+                        overlayStyle={{
+                            minWidth: 375,
+                        }}
                     >
-                        <TalentCard
-                            talent={r}
-                            color={color}
-                        />
-                    </Col>
+                        <Col
+                            key={idx}
+                            {...{ xs: 12, lg: 6 }}
+                        >
+                            <TalentCard
+                                talent={r}
+                                color={color}
+                            />
+                        </Col>
+                    </Tooltip>
                 )
             })}
         </Row>

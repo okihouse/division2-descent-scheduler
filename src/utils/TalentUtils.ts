@@ -4,61 +4,69 @@ import ExoticAsset from '../assets/exotics'
 import Offensive from '../assets/offensivs'
 import Utility from '../assets/utilities'
 import { TalentModel } from '../models/TalentModel'
+import { DefensiveType } from '../type/DefensiveType'
 import { DescentType } from '../type/DescentType'
+import { ExoticType } from '../type/ExoticType'
+import { OffensiveType } from '../type/OffensiveType'
+import { UtilityType } from '../type/UtilityType'
+import I18nUtils from './I18nUtils'
 
 export default class TalentUtils {
     static talent(type: DescentType): TalentModel.ITalentSetModel | undefined {
+        const d = I18nUtils.display()
+
         const pools = [
             {
                 type: DescentType.envy,
+                display: d.type[DescentType.envy].display,
                 exotics: [
-                    { icon: ExoticAsset.PlagueOfTheOutcasts, name: 'Plague of the Outcasts' },
-                    { icon: ExoticAsset.AgonizingBite, name: 'Agonizing Bite' },
-                    { icon: ExoticAsset.IncessantChatter, name: 'Incessant Chatter' },
-                    { icon: ExoticAsset.BulletHell, name: 'Bullet Hell' },
-                    { icon: ExoticAsset.PaymentinKind, name: 'Paymentin Kind' },
-                    { icon: ExoticAsset.LibertyorDeath, name: 'Libertyor Death' },
+                    { icon: ExoticAsset.PlagueOfTheOutcasts, name: d.exotics[ExoticType.PlagueOfTheOutcasts].display, description: d.exotics[ExoticType.PlagueOfTheOutcasts].description },
+                    { icon: ExoticAsset.AgonizingBite, name: d.exotics[ExoticType.AgonizingBite].display, description: d.exotics[ExoticType.AgonizingBite].description },
+                    { icon: ExoticAsset.IncessantChatter, name: d.exotics[ExoticType.IncessantChatter].display , description: d.exotics[ExoticType.IncessantChatter].description },
+                    { icon: ExoticAsset.BulletHell, name: d.exotics[ExoticType.BulletHell].display, description: d.exotics[ExoticType.BulletHell].description },
+                    { icon: ExoticAsset.PaymentinKind, name: d.exotics[ExoticType.PaymentinKind].display, description: d.exotics[ExoticType.PaymentinKind].description },
+                    { icon: ExoticAsset.LibertyorDeath, name: d.exotics[ExoticType.LibertyorDeath].display, description: d.exotics[ExoticType.LibertyorDeath].description },
                 ],
                 offensives: [
-                    { icon: Offensive.Allegro, name: 'Allegro' },
-                    { icon: NotFound, name: 'Clitical' },
-                    { icon: NotFound, name: 'Precise' },
-                    { icon: NotFound, name: 'Surgical' },
-                    { icon: Offensive.Strained, name: 'Strained' },
-                    { icon: Offensive.Vigilance, name: 'Vigilance' },
-                    { icon: Offensive.Unhinged, name: 'Unhinged' },
-                    { icon: Offensive.Rifleman, name: 'Rifleman' },
-                    { icon: Offensive.ClosePersonal, name: 'Close & Personal' },
-                    { icon: Offensive.Obliterate, name: 'Obliterate' },
-                    { icon: Offensive.Pummel, name: 'Pummel' },
-                    { icon: Offensive.Spark, name: 'Spark' },
+                    { icon: Offensive.Allegro, name: d.offensives[OffensiveType.Allegro].display, description: d.exotics[ExoticType.PlagueOfTheOutcasts].description },
+                    { icon: NotFound, name: d.offensives[OffensiveType.Clitical].display },
+                    { icon: NotFound, name: d.offensives[OffensiveType.Precise].display },
+                    { icon: NotFound, name: d.offensives[OffensiveType.Surgical].display },
+                    { icon: Offensive.Strained, name: d.offensives[OffensiveType.Strained].display, description: d.offensives[OffensiveType.Strained].description },
+                    { icon: Offensive.Vigilance, name: d.offensives[OffensiveType.Vigilance].display, description: d.offensives[OffensiveType.Vigilance].description },
+                    { icon: Offensive.Unhinged, name: d.offensives[OffensiveType.Unhinged].display, description: d.offensives[OffensiveType.Unhinged].description },
+                    { icon: Offensive.Rifleman, name: d.offensives[OffensiveType.Rifleman].display, description: d.offensives[OffensiveType.Rifleman].description },
+                    { icon: Offensive.ClosePersonal, name: d.offensives[OffensiveType.ClosePersonal].display, description: d.offensives[OffensiveType.ClosePersonal].description },
+                    { icon: Offensive.Obliterate, name: d.offensives[OffensiveType.Obliterate].display, description: d.offensives[OffensiveType.Obliterate].description },
+                    { icon: Offensive.Pummel, name: d.offensives[OffensiveType.Pummel].display, description: d.offensives[OffensiveType.Pummel].description },
+                    { icon: Offensive.Spark, name: d.offensives[OffensiveType.Spark].display, description: d.offensives[OffensiveType.Spark].description },
                 ],
                 defensives: [
-                    { icon: NotFound, name: 'Insulated' },
-                    { icon: Defensive.AdrenalineRush, name: 'Adrenaline Rush' },
-                    { icon: Defensive.Clutch, name: 'Clutch' },
-                    { icon: Defensive.Efficient, name: 'Efficient' },
-                    { icon: Defensive.Entrench, name: 'Entrench' },
-                    { icon: Defensive.Leadership, name: 'Leadership' },
-                    { icon: NotFound, name: 'Preservation' },
-                    { icon: Defensive.ProtectedReload, name: 'Protected Reload' },
-                    { icon: Defensive.Protector, name: 'Protector' },
-                    { icon: Defensive.Safeguard, name: 'Safeguard' },
-                    { icon: Defensive.Vanguard, name: 'Vanguard' },
+                    { icon: NotFound, name: d.defensives[DefensiveType.Insulated].display },
+                    { icon: Defensive.AdrenalineRush, name: d.defensives[DefensiveType.AdrenalineRush].display },
+                    { icon: Defensive.Clutch, name: d.defensives[DefensiveType.Clutch].display },
+                    { icon: Defensive.Efficient, name: d.defensives[DefensiveType.Efficient].display },
+                    { icon: Defensive.Entrench, name: d.defensives[DefensiveType.Entrench].display },
+                    { icon: Defensive.Leadership, name: d.defensives[DefensiveType.Leadership].display },
+                    { icon: NotFound, name: d.defensives[DefensiveType.Preservation].display },
+                    { icon: Defensive.ProtectedReload, name: d.defensives[DefensiveType.ProtectedReload].display },
+                    { icon: Defensive.Protector, name: d.defensives[DefensiveType.Protector].display },
+                    { icon: Defensive.Safeguard, name: d.defensives[DefensiveType.Safeguard].display },
+                    { icon: Defensive.Vanguard, name: d.defensives[DefensiveType.Vanguard].display },
                 ],
                 utilities: [
-                    { icon: NotFound, name: 'Empowered' },
-                    { icon: Utility.Extra, name: 'Extra' },
-                    { icon: Utility.Surge, name: 'Surge' },
-                    { icon: Utility.Optimized, name: 'Optimized' },
-                    { icon: Utility.ShockedandAwe, name: 'ShockedandAwe' },
-                    { icon: Utility.Perpetuation, name: 'Perpetuation' },
-                    { icon: Utility.Ignited, name: 'Ignited' },
-                    { icon: Utility.Eyeless, name: 'Eyeless' },
-                    { icon: Utility.Trauma, name: 'Trauma' },
-                    { icon: Utility.Sadist, name: 'Sadist' },
-                    { icon: Utility.LuckyShot, name: 'Lucky Shot' },
-                    { icon: Utility.FastHands, name: 'Fast Hands' },
+                    { icon: NotFound, name: d.utilites[UtilityType.Empowered].display },
+                    { icon: Utility.Extra, name: d.utilites[UtilityType.Extra].display },
+                    { icon: Utility.Surge, name: d.utilites[UtilityType.Surge].display },
+                    { icon: Utility.Optimized, name: d.utilites[UtilityType.Optimized].display },
+                    { icon: Utility.ShockedandAwe, name: d.utilites[UtilityType.ShockedandAwe].display },
+                    { icon: Utility.Perpetuation, name: d.utilites[UtilityType.Perpetuation].display },
+                    { icon: Utility.Ignited, name: d.utilites[UtilityType.Ignited].display },
+                    { icon: Utility.Eyeless, name: d.utilites[UtilityType.Eyeless].display },
+                    { icon: Utility.Trauma, name: d.utilites[UtilityType.Trauma].display },
+                    { icon: Utility.Sadist, name: d.utilites[UtilityType.Sadist].display },
+                    { icon: Utility.LuckyShot, name: d.utilites[UtilityType.LuckyShot].display },
+                    { icon: Utility.FastHands, name: d.utilites[UtilityType.FastHands].display },
                 ]
             },
             {

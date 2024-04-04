@@ -24,32 +24,17 @@ export const Home: FunctionComponent = () => {
     const [schedule, setSchedule] = useState<ScheduleModel>()
     const [talentSet, setTalentSet] = useState<TalentModel.ITalentSetModel>()
 
-    const descentTypeDisplayName = (type: DescentType) => {
-        switch (type) {
-            case DescentType.envy:
-                return '질투'
-            case DescentType.greed:
-                return '탐욕'
-            case DescentType.gluttony:
-                return '식탐'
-            case DescentType.sloth:
-                return '나태'
-            case DescentType.wrath:
-                return '분노'
-        }
-    }
-
     useEffect(() => {
         // 날짜 갖고오기   
         const s = DateUtils.schedule()
         if (s) {
             setSchedule(s)
-        }
 
-        // talent set 가져오기
-        const t = TalentUtils.talent(DescentType.greed)
-        if (t) {
-            setTalentSet(t)
+            // talent set 가져오기
+            const t = TalentUtils.talent(s.type)
+            if (t) {
+                setTalentSet(t)
+            }
         }
     }, [])
 
@@ -82,41 +67,49 @@ export const Home: FunctionComponent = () => {
                             )}
                             {talentSet && (
                                 <Typography.Title level={4} style={{ color: '#fff', margin: 0 }} >
-                                    {`Current: ${descentTypeDisplayName(talentSet.type)}`}
+                                    {`Current: ${talentSet.display}`}
                                 </Typography.Title>
                             )}
                         </Space>
                     </Col>
                     {talentSet && (
                         <Row gutter={[0, 12]}>
-                            <Col span={24}>
-                                <TalentContainerCard
-                                    title='Exotic'
-                                    category={TalentCategory.exotic}
-                                    talents={talentSet.exotics}
-                                />
-                            </Col>
-                            <Col span={24}>
-                                <TalentContainerCard
-                                    title='Offensive'
-                                    category={TalentCategory.offensive}
-                                    talents={talentSet.offensives}
-                                />
-                            </Col>
-                            <Col span={24}>
-                                <TalentContainerCard
-                                    title='Defensives'
-                                    category={TalentCategory.defensive}
-                                    talents={talentSet.defensives}
-                                />
-                            </Col>
-                            <Col span={24}>
-                                <TalentContainerCard
-                                    title='Utility'
-                                    category={TalentCategory.utility}
-                                    talents={talentSet.utilities}
-                                />
-                            </Col>
+                            {talentSet.exotics && (
+                                <Col span={24}>
+                                    <TalentContainerCard
+                                        title='Exotic'
+                                        category={TalentCategory.exotic}
+                                        talents={talentSet.exotics}
+                                    />
+                                </Col>
+                            )}
+                            {talentSet.offensives && (
+                                <Col span={24}>
+                                    <TalentContainerCard
+                                        title='Offensive'
+                                        category={TalentCategory.offensive}
+                                        talents={talentSet.offensives}
+                                    />
+                                </Col>
+                            )}
+                            {talentSet.defensives && (
+                                <Col span={24}>
+                                    <TalentContainerCard
+                                        title='Defensives'
+                                        category={TalentCategory.defensive}
+                                        talents={talentSet.defensives}
+                                    />
+                                </Col>
+                            )}
+                            {talentSet.utilities && (
+                                <Col span={24}>
+                                    <TalentContainerCard
+                                        title='Utility'
+                                        category={TalentCategory.utility}
+                                        talents={talentSet.utilities}
+                                    />
+                                </Col>
+                            )}
                         </Row>
                     )}
                     <Col span={24}>
